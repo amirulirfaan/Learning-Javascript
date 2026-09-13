@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Animation Practice</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #f4f5f7;
+        }
+
+        #playground {
+            position: relative;
+            width: 600px;
+            height: 200px;
+            border: 2px solid #222;
+            overflow: hidden;
+        }
+
+        #square {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #222;
+            left: 0;
+            top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="playground">
+        <div id="square"></div>
+    </div>
+
+<script>
+const square = document.querySelector("#square");
+const playground = document.querySelector("#playground");
+const maxWidth = playground.clientWidth - square.offsetWidth;
+
+let positionX = 0;
+let directionX = 1;
+
+function animate() {
+    if (positionX < maxWidth) {
+        positionX += directionX;
+        square.style.left = positionX + "px";
+
+        requestAnimationFrame(animate);
+    }
+}
+
+animate();
+</script>
+
+</body>
+</html>
